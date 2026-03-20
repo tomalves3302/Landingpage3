@@ -1377,36 +1377,6 @@
     }
 
   </style>
-
-  <!-- ============================================
-       META PIXEL — ID: 1935354220414398
-       Eventos: PageView + ViewContent
-       ============================================ -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', '1935354220414398');
-    fbq('track', 'PageView');
-    fbq('track', 'ViewContent', {
-      content_name: 'PageLab - Landing Page R$749',
-      content_category: 'Servico',
-      value: 749.00,
-      currency: 'BRL'
-    });
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1935354220414398&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel -->
-
 </head>
 <body>
 
@@ -1442,7 +1412,7 @@
         <li><a href="#preco">pReço</a></li>
         <li><a href="#faq">fAq</a></li>
         <!-- Altere o link do CTA da navbar -->
-        <li><a href="https://pay.kiwify.com.br/pa9lLMM" target="_blank" rel="noopener" class="btn-cta" style="padding:0.6rem 1.25rem; font-size:0.8rem;">Quero Minha Page</a></li>
+        <li><a href="https://pay.kiwify.com.br/pa9lLMM" class="btn-cta" style="padding:0.6rem 1.25rem; font-size:0.8rem;">Quero Minha Page</a></li>
       </ul>
 
       <button class="nav-toggle" id="navToggle" aria-label="Menu">
@@ -1460,7 +1430,7 @@
     <a href="#portfolio" onclick="closeMobile()">pOrtfólio</a>
     <a href="#preco" onclick="closeMobile()">pReço</a>
     <a href="#faq" onclick="closeMobile()">fAq</a>
-    <a href="https://pay.kiwify.com.br/pa9lLMM" target="_blank" rel="noopener" class="btn-cta" onclick="closeMobile()" style="margin-top:1rem;">Quero Minha Page</a>
+    <a href="https://pay.kiwify.com.br/pa9lLMM" class="btn-cta" onclick="closeMobile()" style="margin-top:1rem;">Quero Minha Page</a>
   </div>
 
 
@@ -1494,7 +1464,7 @@
 
         <div class="hero-cta-group">
           <!-- Altere link e texto do CTA principal -->
-          <a href="https://pay.kiwify.com.br/pa9lLMM" target="_blank" rel="noopener" class="btn-cta btn-cta-full">
+          <a href="https://pay.kiwify.com.br/pa9lLMM" class="btn-cta btn-cta-full">
             Quero Minha Landing Page →
           </a>
         </div>
@@ -1920,7 +1890,7 @@
           </ul>
 
           <!-- Altere o link do CTA -->
-          <a href="https://pay.kiwify.com.br/pa9lLMM" target="_blank" rel="noopener" class="btn-cta btn-cta-full" style="text-align:center;">Quero Minha Landing Page →</a>
+          <a href="https://pay.kiwify.com.br/pa9lLMM" class="btn-cta btn-cta-full" style="text-align:center;">Quero Minha Landing Page →</a>
           <p class="cta-micro" style="text-align:center;">// pAgamento sEguro · rEceba eM 1 dIa</p>
         </div>
 
@@ -2021,7 +1991,7 @@
           Cada dia sem uma landing page profissional é um dia que seus potenciais clientes estão fechando com outra pessoa.
         </p>
         <!-- Altere link e texto -->
-        <a href="https://pay.kiwify.com.br/pa9lLMM" target="_blank" rel="noopener" class="btn-cta btn-cta-full" style="margin: 0 auto;">Quero Minha Landing Page →</a>
+        <a href="https://pay.kiwify.com.br/pa9lLMM" class="btn-cta btn-cta-full" style="margin: 0 auto;">Quero Minha Landing Page →</a>
         <p class="cta-micro" style="text-align:center;">// R$749 · eNtrega eM 1 dIa · sEm rEuniões</p>
       </div>
     </div>
@@ -2111,22 +2081,6 @@
     terminalLines.forEach((line, i) => {
       line.style.opacity = '0';
       line.style.animation = `fadeUp 0.5s var(--ease-out-expo) ${0.8 + i * 0.2}s both`;
-    });
-  </script>
-
-  <!-- ============================================
-       META PIXEL — Evento InitiateCheckout
-       Dispara ao clicar em qualquer CTA da Kiwify
-       ============================================ -->
-  <script>
-    document.querySelectorAll('a[href*="kiwify.com.br"]').forEach(function(link) {
-      link.addEventListener('click', function() {
-        fbq('track', 'InitiateCheckout', {
-          value: 749.00,
-          currency: 'BRL',
-          content_name: 'PageLab LP R$749'
-        });
-      });
     });
   </script>
 
