@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PageLab — Landing pages que transformam autoridade em clientes. Entrega em 5 dias úteis, sem reuniões. R$749.">
+  <meta property="og:title" content="PageLab — Sua Autoridade Merece Uma Página Que Converte">
+  <meta property="og:description" content="Landing pages profissionais para prestadores de serviço. Entrega em 5 dias úteis. R$749.">
+  <meta property="og:type" content="website">
+  <title>PageLab — Landing Pages Que Convertem</title>
+
+  <!-- ============================================
+       FONTES — DM Sans + Space Mono (Google Fonts)
+       ============================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       RESET & CSS VARIABLES (DESIGN TOKENS)
+       Altere as cores aqui para ajustar a paleta
+       ============================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* === CORES PRINCIPAIS === */
+      --color-bg: #0E0E0E;           /* Fundo principal — preto fosco */
+      --color-bg-elevated: #181818;   /* Cards e seções elevadas */
+      --color-bg-subtle: #141414;     /* Seções alternadas */
+      --color-surface: #1E1E1E;       /* Superfícies interativas */
+      --color-border: #2A2A2A;        /* Bordas padrão */
+      --color-border-glow: rgba(2, 17, 134, 0.4); /* Borda com glow azul */
+
+      --color-text: #D7D7D7;         /* Texto principal — cinza claro */
+      --color-text-muted: #8A8A8A;   /* Texto secundário */
+      --color-text-dim: #5A5A5A;     /* Texto terciário / labels */
+      --color-white: #F5F5F5;        /* Branco suave (nunca puro) */
+
+      --color-accent: #0217B5;       /* Azul principal */
+      --color-accent-bright: #1A3AE0; /* Azul mais brilhante para hover */
+      --color-accent-glow: rgba(2, 23, 181, 0.35); /* Glow do azul */
+      --color-accent-soft: rgba(2, 23, 181, 0.12); /* Azul sutil para bgs */
+
+      /* === GRADIENTES === */
+      --gradient-accent: linear-gradient(90deg, #929292 0%, #0217B5 50%, #929292 100%);
+      --gradient-accent-vertical: linear-gradient(180deg, #0217B5 0%, #021186 100%);
+      --gradient-mesh: radial-gradient(ellipse at 20% 0%, rgba(2,23,181,0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 100%, rgba(2,23,181,0.08) 0%, transparent 50%);
+
+      /* === TIPOGRAFIA === */
+      --font-heading: 'DM Sans', sans-serif;
+      --font-code: 'Space Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+
+      /* === TAMANHOS DE TEXTO === */
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: clamp(2rem, 4vw, 2.5rem);
+      --text-5xl: clamp(2.5rem, 5.5vw, 3.5rem);
+      --text-6xl: clamp(3rem, 7vw, 4.5rem);
+      --text-hero: clamp(2.8rem, 8vw, 5.5rem);
+
+      /* === ESPAÇAMENTO === */
+      --section-pad: clamp(4rem, 10vw, 7rem);
+      --container-max: 1200px;
+      --container-pad: clamp(1.25rem, 5vw, 2rem);
+
+      /* === SOMBRAS & BORDAS === */
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+      --shadow-glow: 0 0 40px rgba(2, 23, 181, 0.2);
+      --shadow-glow-strong: 0 0 60px rgba(2, 23, 181, 0.35);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+
+      /* === EASING === */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.65;
+      font-size: 16px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--container-pad);
+    }
+
+    /* === TIPOGRAFIA HEADLINE — DM Sans Medium, primeiras letras maiúsculas === */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      color: var(--color-white);
+      line-height: 1.15;
+      text-transform: capitalize;
+    }
+
+    /* === TIPOGRAFIA CODE — Space Mono (alternância maiúscula/minúscula) === */
+    .code-text {
+      font-family: var(--font-code);
+      letter-spacing: 0.05em;
+    }
+
+    .code-label {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent-bright);
+    }
+
+    /* Efeito de text-transform alternado para Space Mono */
+    .code-mix {
+      font-family: var(--font-code);
+      letter-spacing: 0.08em;
+    }
+
+    /* === LINHA GRADIENTE DECORATIVA === */
+    .gradient-line {
+      height: 1px;
+      background: var(--gradient-accent);
+      border: none;
+      border-radius: 1px;
+    }
+
+    .gradient-line-thick {
+      height: 2px;
+      background: var(--gradient-accent);
+      border: none;
+      border-radius: 2px;
+    }
+
+    /* ============================================
+       ANIMAÇÕES
+       ============================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes blurIn {
+      from { opacity: 0; filter: blur(10px); transform: translateY(12px); }
+      to { opacity: 1; filter: blur(0); transform: translateY(0); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(2, 23, 181, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(2, 23, 181, 0); }
+    }
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.03; }
+      50% { opacity: 0.07; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================
+       GRID BACKGROUND PATTERN (TECH LAB)
+       Altere opacity ou remova para simplificar
+       ============================================ */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(2,23,181,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2,23,181,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+
+    /* ============================================
+       SCANLINE OVERLAY (SUTIL)
+       ============================================ */
+    .scanline-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(180deg, transparent, rgba(2,23,181,0.06), transparent);
+      z-index: 9998;
+      pointer-events: none;
+      animation: scanline 6s linear infinite;
+    }
+
+    /* ============================================
+       NAVBAR
+       Altere links e logo aqui
+       ============================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(14, 14, 14, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom-color: var(--color-border);
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+    }
+    .nav-logo-text {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--text-xl);
+      color: var(--color-white);
+    }
+    .nav-logo-text span {
+      font-family: var(--font-code);
+      color: var(--color-accent-bright);
+      font-weight: 700;
+    }
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--color-white); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--color-accent-bright);
+      transition: width 0.3s var(--ease-out-quart);
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+    }
+
+    /* === BOTÃO CTA GLOBAL === */
+    /* Altere cores, texto e link do CTA aqui */
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--text-base);
+      color: var(--color-white);
+      background: var(--color-accent);
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s var(--ease-out-quart);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .btn-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .btn-cta:hover {
+      background: var(--color-accent-bright);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow-strong);
+    }
+    .btn-cta:hover::before { opacity: 1; }
+    .btn-cta:active { transform: translateY(0); }
+
+    .btn-cta-full {
+      width: 100%;
+      max-width: 420px;
+      padding: 1.1rem 2rem;
+      font-size: var(--text-lg);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+    }
+    .btn-outline:hover {
+      border-color: var(--color-accent-bright);
+      color: var(--color-white);
+      background: var(--color-accent-soft);
+      box-shadow: none;
+    }
+
+    .cta-micro {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-dim);
+      margin-top: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================
+       SECTION: HERO
+       Altere headline, subheadline e CTA
+       ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      padding-bottom: var(--section-pad);
+      overflow: hidden;
+    }
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-mesh);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(2,23,181,0.2) 0%, transparent 70%);
+      top: 10%;
+      right: -10%;
+      pointer-events: none;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+      background: var(--color-bg-elevated);
+      animation: fadeUp 0.8s var(--ease-out-expo) both;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent-bright);
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    .hero h1 {
+      font-size: var(--text-hero);
+      font-weight: 500;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      animation: blurIn 1s var(--ease-out-expo) 0.2s both;
+    }
+    .hero h1 .accent {
+      color: var(--color-accent-bright);
+      position: relative;
+    }
+    .hero h1 .accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient-accent);
+      border-radius: 2px;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--color-text-muted);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      animation: fadeUp 0.8s var(--ease-out-expo) 0.4s both;
+    }
+    .hero-sub strong {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeUp 0.8s var(--ease-out-expo) 0.6s both;
+    }
+    @media (min-width: 640px) {
+      .hero-cta-group {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+      animation: fadeUp 0.8s var(--ease-out-expo) 0.8s both;
+    }
+    .hero-stat-number {
+      font-family: var(--font-code);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--color-white);
+    }
+    .hero-stat-label {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-dim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* Terminal decorativo no hero (desktop) */
+    .hero-terminal {
+      display: none;
+      position: absolute;
+      right: var(--container-pad);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 380px;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: var(--shadow-card), var(--shadow-glow);
+      animation: fadeUp 1s var(--ease-out-expo) 1s both;
+    }
+    @media (min-width: 1100px) {
+      .hero-terminal { display: block; }
+      .hero-content { max-width: 600px; }
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-border);
+    }
+    .terminal-dot:first-child { background: #ff5f57; }
+    .terminal-dot:nth-child(2) { background: #ffbd2e; }
+    .terminal-dot:nth-child(3) { background: #28c840; }
+    .terminal-title {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-dim);
+      margin-left: 0.5rem;
+    }
+    .terminal-body {
+      padding: 1.25rem;
+      font-family: var(--font-code);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--color-text-muted);
+    }
+    .terminal-line { margin-bottom: 0.25rem; }
+    .terminal-line .prompt { color: var(--color-accent-bright); }
+    .terminal-line .cmd { color: var(--color-white); }
+    .terminal-line .comment { color: var(--color-text-dim); }
+    .terminal-line .string { color: #28c840; }
+    .terminal-line .output { color: var(--color-text-muted); }
+    .terminal-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--color-accent-bright);
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+    }
+
+    /* ============================================
+       SECTION: PROBLEMA / DOR
+       Altere os pontos de dor e textos
+       ============================================ */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: var(--section-pad) 0;
+    }
+    .section-alt {
+      background: var(--color-bg-subtle);
+    }
+
+    .section-label {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent-bright);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--color-accent-bright);
+    }
+
+    .section-title {
+      font-size: var(--text-4xl);
+      margin-bottom: 1.25rem;
+      max-width: 700px;
+    }
+
+    .section-desc {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* Pain points grid */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .pain-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .pain-card {
+      padding: 1.75rem;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pain-card:hover {
+      border-color: rgba(2,23,181,0.3);
+      box-shadow: 0 0 30px rgba(2,23,181,0.08);
+    }
+    .pain-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--color-accent-soft);
+      border: 1px solid rgba(2,23,181,0.2);
+    }
+    .pain-card h4 {
+      font-size: var(--text-base);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .pain-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       SECTION: SOLUÇÃO / O QUE ENTREGAMOS
+       Altere items inclusos e benefícios
+       ============================================ */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .solution-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .solution-card {
+      padding: 2rem;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s var(--ease-out-quart), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .solution-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(2,23,181,0.25);
+    }
+    .solution-card:hover::before { opacity: 1; }
+    .solution-number {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-accent-bright);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+    }
+    .solution-card h4 {
+      font-size: var(--text-lg);
+      margin-bottom: 0.75rem;
+    }
+    .solution-card p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       SECTION: COMO FUNCIONA (PROCESSO)
+       Altere etapas e descrições
+       ============================================ */
+    .steps-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media (min-width: 768px) {
+      .steps-wrapper { grid-template-columns: repeat(4, 1fr); }
+    }
+    .step-item {
+      padding: 2rem 1.5rem;
+      position: relative;
+      border-bottom: 1px solid var(--color-border);
+    }
+    @media (min-width: 768px) {
+      .step-item {
+        border-bottom: none;
+        border-right: 1px solid var(--color-border);
+      }
+      .step-item:last-child { border-right: none; }
+    }
+    .step-number {
+      font-family: var(--font-code);
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      color: var(--color-accent-soft);
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      color: rgba(2,23,181,0.2);
+    }
+    .step-item h4 {
+      font-size: var(--text-base);
+      margin-bottom: 0.5rem;
+    }
+    .step-item p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+    .step-time {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-accent-bright);
+      margin-top: 0.75rem;
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid rgba(2,23,181,0.2);
+      border-radius: var(--radius-sm);
+    }
+
+    /* ============================================
+       SECTION: COMPARATIVO
+       Altere items de comparação
+       ============================================ */
+    .compare-table {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      min-width: 600px;
+    }
+    .compare-header {
+      padding: 1.25rem 1rem;
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-text-dim);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .compare-header.highlight {
+      color: var(--color-accent-bright);
+      background: var(--color-accent-soft);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+    .compare-cell {
+      padding: 1rem;
+      border-bottom: 1px solid var(--color-border);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+    }
+    .compare-cell.feature {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    .compare-cell.highlight {
+      background: rgba(2,23,181,0.04);
+      color: var(--color-white);
+      font-weight: 500;
+    }
+    .compare-check { color: #28c840; margin-right: 0.5rem; }
+    .compare-x { color: #ff5f57; margin-right: 0.5rem; }
+
+    /* ============================================
+       SECTION: DEPOIMENTOS
+       Altere depoimentos de clientes
+       ============================================ */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .testimonial-card {
+      padding: 2rem;
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      position: relative;
+      transition: border-color 0.3s ease;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(2,23,181,0.25);
+    }
+    .testimonial-stars {
+      color: #ffbd2e;
+      font-size: var(--text-sm);
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+    .testimonial-text {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-accent-soft);
+      border: 2px solid var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-accent-bright);
+    }
+    .testimonial-name {
+      font-weight: 500;
+      color: var(--color-white);
+      font-size: var(--text-sm);
+    }
+    .testimonial-role {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-dim);
+    }
+
+    /* ============================================
+       SECTION: OFERTA / PRICING
+       Altere preço, items inclusos e CTA
+       ============================================ */
+    .pricing-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .pricing-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+    }
+    .pricing-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card.featured {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-glow);
+    }
+    .pricing-card.featured::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-accent);
+    }
+    .pricing-tag {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent-bright);
+      margin-bottom: 1rem;
+      padding: 0.3rem 0.75rem;
+      background: var(--color-accent-soft);
+      border-radius: var(--radius-sm);
+      display: inline-block;
+    }
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-currency {
+      font-family: var(--font-code);
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+    }
+    .pricing-value {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1;
+    }
+    .pricing-period {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-dim);
+      margin-bottom: 2rem;
+    }
+    .pricing-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    .pricing-list li {
+      padding: 0.6rem 0;
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      border-bottom: 1px solid rgba(42,42,42,0.5);
+    }
+    .pricing-list li:last-child { border-bottom: none; }
+    .pricing-list .check {
+      color: #28c840;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Upsells */
+    .upsell-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .upsell-card {
+      padding: 1.5rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .upsell-info h4 {
+      font-size: var(--text-sm);
+      margin-bottom: 0.25rem;
+    }
+    .upsell-info p {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .upsell-price {
+      font-family: var(--font-code);
+      font-size: var(--text-sm);
+      color: var(--color-accent-bright);
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    /* ============================================
+       SECTION: FAQ
+       Altere perguntas e respostas
+       ============================================ */
+    .faq-list {
+      max-width: 760px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+    }
+    .faq-question span {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: var(--text-base);
+      color: var(--color-white);
+      line-height: 1.4;
+    }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-code);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      transition: all 0.3s ease;
+    }
+    .faq-item.open .faq-icon {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-white);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out-expo), padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+      padding-bottom: 1.5rem;
+    }
+    .faq-answer p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       SECTION: CTA FINAL
+       Altere headline final e CTA
+       ============================================ */
+    .cta-final {
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-final-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(2,23,181,0.2) 0%, transparent 60%),
+        var(--color-bg-subtle);
+      pointer-events: none;
+    }
+    .cta-final .container {
+      position: relative;
+      z-index: 1;
+    }
+    .cta-final h2 {
+      font-size: var(--text-5xl);
+      margin-bottom: 1rem;
+    }
+    .cta-final-desc {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      max-width: 550px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       FOOTER
+       Altere links e informações legais
+       ============================================ */
+    .footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--color-border);
+      position: relative;
+      z-index: 1;
+    }
+    .footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      .footer .container {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+    .footer-copy {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-dim);
+      letter-spacing: 0.05em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      color: var(--color-text-dim);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: var(--color-text); }
+
+    /* ============================================
+       MOBILE NAV TOGGLE
+       ============================================ */
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    @media (min-width: 768px) {
+      .nav-toggle { display: none; }
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(14, 14, 14, 0.97);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-family: var(--font-code);
+      font-size: var(--text-lg);
+      color: var(--color-text);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: color 0.3s ease;
+    }
+    .mobile-menu a:hover { color: var(--color-accent-bright); }
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: var(--color-text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-family: var(--font-code);
+    }
+
+    /* ============================================
+       MARQUEE SOCIAL PROOF BAR
+       ============================================ */
+    .proof-bar {
+      padding: 1rem 0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    .proof-track {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-code);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-dim);
+    }
+    .proof-item .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-accent-bright);
+    }
+
+    /* ============================================
+       GRADIENT BORDER UTILITY
+       ============================================ */
+    .gradient-border {
+      position: relative;
+    }
+    .gradient-border::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-accent);
+    }
+
+    /* ============================================
+       RESPONSIVE HELPERS
+       ============================================ */
+    .hide-mobile { display: none; }
+    @media (min-width: 768px) { .hide-mobile { display: block; } }
+    .hide-desktop { display: block; }
+    @media (min-width: 768px) { .hide-desktop { display: none; } }
+
+  </style>
+</head>
+<body>
+
+  <!-- GRID BACKGROUND -->
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- SCANLINE SUBTLE -->
+  <div class="scanline-overlay" aria-hidden="true"></div>
+
+  <!-- ============================================
+       NAVEGAÇÃO
+       Altere links e destinos das âncoras
+       ============================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <!-- LOGO — Substitua pelo SVG real (logo_lab.svg) -->
+        <svg class="nav-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="6" fill="#0217B5" fill-opacity="0.15"/>
+          <rect x="1" y="1" width="34" height="34" rx="5" stroke="#0217B5" stroke-opacity="0.4" stroke-width="1"/>
+          <path d="M10 10h4v12h8v4H10V10z" fill="#1A3AE0"/>
+          <rect x="20" y="10" width="4" height="4" rx="1" fill="#1A3AE0" opacity="0.6"/>
+          <rect x="20" y="17" width="4" height="4" rx="1" fill="#1A3AE0" opacity="0.35"/>
+        </svg>
+        <span class="nav-logo-text">Page<span>Lab</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#problema">pRoblema</a></li>
+        <li><a href="#solucao">sOlução</a></li>
+        <li><a href="#processo">pRocesso</a></li>
+        <li><a href="#preco">pReço</a></li>
+        <li><a href="#faq">fAq</a></li>
+        <!-- Altere o link do CTA da navbar -->
+        <li><a href="#preco" class="btn-cta" style="padding:0.6rem 1.25rem; font-size:0.8rem;">Quero Minha Page</a></li>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileClose">✕</button>
+    <a href="#problema" onclick="closeMobile()">pRoblema</a>
+    <a href="#solucao" onclick="closeMobile()">sOlução</a>
+    <a href="#processo" onclick="closeMobile()">pRocesso</a>
+    <a href="#preco" onclick="closeMobile()">pReço</a>
+    <a href="#faq" onclick="closeMobile()">fAq</a>
+    <a href="#preco" class="btn-cta" onclick="closeMobile()" style="margin-top:1rem;">Quero Minha Page</a>
+  </div>
+
+
+  <!-- ============================================
+       HERO — ABOVE THE FOLD
+       Altere: headline, subheadline, CTA, stats
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-mesh" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span class="code-mix">aCeitando nOvos pRojetos</span>
+        </div>
+
+        <!-- Altere a headline principal aqui -->
+        <h1>
+          Seu Concorrente Fecha Mais<br>
+          Porque <span class="accent">Aparece Melhor</span>
+        </h1>
+
+        <!-- Altere a subheadline aqui -->
+        <p class="hero-sub">
+          Criamos landing pages que transformam sua <strong>autoridade em clientes</strong>.
+          Entrega em <strong>5 dias úteis</strong>, sem reuniões intermináveis, sem enrolação.
+          Você preenche um briefing. A gente faz tudo.
+        </p>
+
+        <div class="hero-cta-group">
+          <!-- Altere link e texto do CTA principal -->
+          <a href="#preco" class="btn-cta btn-cta-full">
+            Quero Minha Landing Page →
+          </a>
+        </div>
+        <p class="cta-micro">// sEm rEuniões · pReço fIxo R$749 · eNtrega 5 dIas</p>
+
+        <!-- Altere números/estatísticas -->
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-number">150+</div>
+            <div class="hero-stat-label">páginas entregues</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">5 dias</div>
+            <div class="hero-stat-label">prazo de entrega</div>
+          </div>
+          <div>
+            <div class="hero-stat-number">0</div>
+            <div class="hero-stat-label">reuniões antes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terminal decorativo (desktop only) -->
+      <div class="hero-terminal">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-title">pagelab — terminal</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line"><span class="prompt">$</span> <span class="cmd">pagelab init</span></div>
+          <div class="terminal-line"><span class="comment"># analisando concorrência...</span></div>
+          <div class="terminal-line"><span class="output">→ 3 concorrentes mapeados</span></div>
+          <div class="terminal-line"><span class="comment"># gerando copy persuasiva...</span></div>
+          <div class="terminal-line"><span class="output">→ 7 seções estruturadas</span></div>
+          <div class="terminal-line"><span class="comment"># construindo landing page...</span></div>
+          <div class="terminal-line"><span class="string">✓ página pronta em 5 dias</span></div>
+          <div class="terminal-line"><span class="string">✓ zero reuniões necessárias</span></div>
+          <div class="terminal-line" style="margin-top:0.5rem;"><span class="prompt">$</span> <span class="terminal-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       PROOF BAR — SOCIAL PROOF RÁPIDA
+       Altere as frases do marquee
+       ============================================ -->
+  <div class="proof-bar">
+    <div class="proof-track">
+      <span class="proof-item"><span class="dot"></span>lAnding pAges qUe cOnvertem</span>
+      <span class="proof-item"><span class="dot"></span>eNtrega eM 5 dIas úTeis</span>
+      <span class="proof-item"><span class="dot"></span>sEm rEuniões oBrigatórias</span>
+      <span class="proof-item"><span class="dot"></span>aNálise dE cOncorrente iNcluída</span>
+      <span class="proof-item"><span class="dot"></span>cÓpia pErsuasiva pRofissional</span>
+      <span class="proof-item"><span class="dot"></span>pReço fIxo R$749</span>
+      <span class="proof-item"><span class="dot"></span>100% aSsíncrono</span>
+      <span class="proof-item"><span class="dot"></span>fOco eM rEsultado</span>
+      <!-- Duplicado para loop contínuo -->
+      <span class="proof-item"><span class="dot"></span>lAnding pAges qUe cOnvertem</span>
+      <span class="proof-item"><span class="dot"></span>eNtrega eM 5 dIas úTeis</span>
+      <span class="proof-item"><span class="dot"></span>sEm rEuniões oBrigatórias</span>
+      <span class="proof-item"><span class="dot"></span>aNálise dE cOncorrente iNcluída</span>
+      <span class="proof-item"><span class="dot"></span>cÓpia pErsuasiva pRofissional</span>
+      <span class="proof-item"><span class="dot"></span>pReço fIxo R$749</span>
+      <span class="proof-item"><span class="dot"></span>100% aSsíncrono</span>
+      <span class="proof-item"><span class="dot"></span>fOco eM rEsultado</span>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       SEÇÃO: PROBLEMA / DOR
+       Altere os pontos de dor do público
+       ============================================ -->
+  <section class="section section-alt" id="problema">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">// dIagnóstico</span>
+        <!-- Altere o título da seção -->
+        <h2 class="section-title">Você Tem Autoridade.<br>Seu Site Não Mostra Isso.</h2>
+        <p class="section-desc">
+          Enquanto você espera 60 dias por uma agência te retornar, seu concorrente já está
+          fechando os clientes que deveriam ser seus.
+        </p>
+      </div>
+
+      <!-- Altere os cards de dor -->
+      <div class="pain-grid">
+        <div class="pain-card reveal reveal-delay-1">
+          <div class="pain-icon">⏳</div>
+          <h4>Agências Que Demoram Meses</h4>
+          <p>30, 60, 90 dias e nada entregue. Enquanto isso, cada semana sem presença digital é dinheiro perdido.</p>
+        </div>
+        <div class="pain-card reveal reveal-delay-2">
+          <div class="pain-icon">🎨</div>
+          <h4>Sites Bonitos Que Não Vendem</h4>
+          <p>Site estético mas sem estratégia. Recebe visita, não converte. Parece portfólio, não máquina de cliente.</p>
+        </div>
+        <div class="pain-card reveal reveal-delay-3">
+          <div class="pain-icon">📞</div>
+          <h4>Reuniões Infinitas Sem Resultado</h4>
+          <p>Briefing, call de alinhamento, revisão 1, revisão 2... e no final ainda precisa de mais uma reunião.</p>
+        </div>
+        <div class="pain-card reveal reveal-delay-4">
+          <div class="pain-icon">💀</div>
+          <h4>Concorrente Pior Fecha Mais</h4>
+          <p>Ele não é melhor que você. Só está melhor posicionado. A página dele convence — a sua não existe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEÇÃO: SOLUÇÃO / O QUE ENTREGAMOS
+       Altere items inclusos no produto
+       ============================================ -->
+  <section class="section" id="solucao">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">// sOlução</span>
+        <h2 class="section-title">Tudo Que Você Precisa.<br>Nada Que Você Não Precisa.</h2>
+        <p class="section-desc">
+          Uma landing page completa, focada em converter visitantes em clientes.
+          Sem firula, sem feature inútil — só o que gera resultado.
+        </p>
+      </div>
+
+      <div class="solution-grid">
+        <!-- Altere os cards de solução -->
+        <div class="solution-card reveal reveal-delay-1">
+          <span class="solution-number">01</span>
+          <h4>Análise Do Concorrente</h4>
+          <p>Mapeamos o que os seus principais concorrentes fazem online. Você vê as brechas — e a gente explora.</p>
+        </div>
+        <div class="solution-card reveal reveal-delay-2">
+          <span class="solution-number">02</span>
+          <h4>Landing Page Completa</h4>
+          <p>7 seções estruturadas para conversão: hero, dor, solução, processo, prova social, FAQ e CTA. Cada bloco com propósito.</p>
+        </div>
+        <div class="solution-card reveal reveal-delay-3">
+          <span class="solution-number">03</span>
+          <h4>Cópia Persuasiva</h4>
+          <p>Texto escrito para vender, não para informar. Cada palavra posicionada para mover o visitante em direção ao contato.</p>
+        </div>
+        <div class="solution-card reveal reveal-delay-1">
+          <span class="solution-number">04</span>
+          <h4>Entrega Em 5 Dias Úteis</h4>
+          <p>Enquanto agências pedem 60 dias, nós entregamos em 5. Prazo curto porque nosso processo é cirúrgico.</p>
+        </div>
+        <div class="solution-card reveal reveal-delay-2">
+          <span class="solution-number">05</span>
+          <h4>100% Assíncrono</h4>
+          <p>Zero reuniões obrigatórias. Você preenche um formulário de 10 minutos. Nós cuidamos do resto.</p>
+        </div>
+        <div class="solution-card reveal reveal-delay-3">
+          <span class="solution-number">06</span>
+          <h4>1 Rodada De Ajustes</h4>
+          <p>Incluída no pacote. Revisamos sem custo extra. Ajustes adicionais são cobrados à parte se necessário.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEÇÃO: COMO FUNCIONA (PROCESSO)
+       Altere etapas e descrições
+       ============================================ -->
+  <section class="section section-alt" id="processo">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">// pRocesso</span>
+        <h2 class="section-title">4 Etapas. 5 Dias. Página No Ar.</h2>
+        <p class="section-desc">
+          Processo 100% assíncrono e escalável. Sem nenhuma reunião obrigatória antes do pagamento.
+        </p>
+      </div>
+
+      <div class="steps-wrapper">
+        <!-- Altere as etapas do processo -->
+        <div class="step-item reveal reveal-delay-1">
+          <div class="step-number">01</div>
+          <h4>Compra Direto</h4>
+          <p>R$749, pagamento único. Sem reunião de venda. Compra como produto — simples assim.</p>
+          <span class="step-time">~2 min</span>
+        </div>
+        <div class="step-item reveal reveal-delay-2">
+          <div class="step-number">02</div>
+          <h4>Preenche O Briefing</h4>
+          <p>Formulário com 12 perguntas enviado automaticamente após a compra. 10 minutos do seu tempo.</p>
+          <span class="step-time">~10 min</span>
+        </div>
+        <div class="step-item reveal reveal-delay-3">
+          <div class="step-number">03</div>
+          <h4>Nós Produzimos</h4>
+          <p>Análise do concorrente + landing page + cópia persuasiva. Tudo feito sem te incomodar.</p>
+          <span class="step-time">5 dias úteis</span>
+        </div>
+        <div class="step-item reveal reveal-delay-4">
+          <div class="step-number">04</div>
+          <h4>Página No Ar</h4>
+          <p>Receba por e-mail ou WhatsApp. Aprove, ajuste se quiser, e publique. Pronto para converter.</p>
+          <span class="step-time">✓ entregue</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEÇÃO: COMPARATIVO
+       Altere colunas de comparação
+       ============================================ -->
+  <section class="section" id="comparativo">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">// cOmparativo</span>
+        <h2 class="section-title">PageLab vs Agência Tradicional</h2>
+        <p class="section-desc">
+          Não somos melhores em tudo. Somos melhores no que importa pra você.
+        </p>
+      </div>
+
+      <div class="compare-table reveal">
+        <div class="compare-grid">
+          <div class="compare-header"></div>
+          <div class="compare-header">Agência Tradicional</div>
+          <div class="compare-header highlight">pAgeLab</div>
+
+          <!-- Altere as linhas de comparação -->
+          <div class="compare-cell feature">Prazo de entrega</div>
+          <div class="compare-cell">30–60 dias</div>
+          <div class="compare-cell highlight">5 dias úteis</div>
+
+          <div class="compare-cell feature">Reuniões obrigatórias</div>
+          <div class="compare-cell">3–5 calls</div>
+          <div class="compare-cell highlight"><span class="compare-check">✓</span> Zero</div>
+
+          <div class="compare-cell feature">Análise de concorrente</div>
+          <div class="compare-cell"><span class="compare-x">✕</span> Não incluído</div>
+          <div class="compare-cell highlight"><span class="compare-check">✓</span> Incluído</div>
+
+          <div class="compare-cell feature">Copy persuasiva</div>
+          <div class="compare-cell"><span class="compare-x">✕</span> Texto genérico</div>
+          <div class="compare-cell highlight"><span class="compare-check">✓</span> Texto que vende</div>
+
+          <div class="compare-cell feature">Preço</div>
+          <div class="compare-cell">R$2.000–R$8.000+</div>
+          <div class="compare-cell highlight">R$749 fixo</div>
+
+          <div class="compare-cell feature">Foco do site</div>
+          <div class="compare-cell">Ser bonito</div>
+          <div class="compare-cell highlight">Converter clientes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEÇÃO: DEPOIMENTOS
+       Altere depoimentos, nomes e resultados
+       ============================================ -->
+  <section class="section section-alt" id="depoimentos">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">// rEsultados</span>
+        <h2 class="section-title">Quem Já Passou Pelo Lab</h2>
+        <p class="section-desc">
+          Prestadores de serviço que pararam de depender só do Instagram e começaram a converter de verdade.
+        </p>
+      </div>
+
+      <!-- Altere os depoimentos -->
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Em 5 dias eu tinha uma página que meu designer anterior não fez em 2 meses. 
+            Comecei a receber contatos no WhatsApp na primeira semana."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RC</div>
+            <div>
+              <div class="testimonial-name">Renata Campos</div>
+              <div class="testimonial-role">Nutricionista</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "O processo é absurdamente simples. Respondi as perguntas, esperei 5 dias e recebi 
+            algo que eu não conseguiria nem se pagasse 5x mais numa agência."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">FL</div>
+            <div>
+              <div class="testimonial-name">Felipe Lopes</div>
+              <div class="testimonial-role">Advogado Trabalhista</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Meu concorrente direto tinha uma página profissional e eu não. Depois da PageLab, 
+            clientes passaram a me encontrar primeiro. Mudou o jogo."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AM</div>
+            <div>
+              <div class="testimonial-name">André Machado</div>
+              <div class="testimonial-role">Personal Trainer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEÇÃO: OFERTA / PRICING
+       Altere preço, items, upsells e CTAs
+       ============================================ -->
+  <section class="section" id="preco">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">// iNvestimento</span>
+        <h2 class="section-title">Preço Fixo. Sem Surpresas.</h2>
+        <p class="section-desc">
+          Um valor. Tudo incluído. Sem negociação, sem taxa escondida, sem "vamos conversar sobre orçamento".
+        </p>
+      </div>
+
+      <div class="pricing-wrapper">
+        <!-- Card principal -->
+        <div class="pricing-card featured reveal">
+          <span class="pricing-tag">oFerta cOre</span>
+          <div class="pricing-price">
+            <span class="pricing-currency">R$</span>
+            <!-- Altere o preço aqui -->
+            <span class="pricing-value">749</span>
+          </div>
+          <p class="pricing-period">pagamento único</p>
+
+          <hr class="gradient-line" style="margin-bottom: 1.5rem;">
+
+          <!-- Altere a lista de items inclusos -->
+          <ul class="pricing-list">
+            <li><span class="check">✓</span> Análise completa dos concorrentes</li>
+            <li><span class="check">✓</span> Landing page com 7 seções estratégicas</li>
+            <li><span class="check">✓</span> Cópia persuasiva profissional</li>
+            <li><span class="check">✓</span> Entrega em 5 dias úteis</li>
+            <li><span class="check">✓</span> Processo 100% assíncrono — sem reuniões</li>
+            <li><span class="check">✓</span> 1 rodada de ajustes incluída</li>
+            <li><span class="check">✓</span> Responsivo para mobile e desktop</li>
+          </ul>
+
+          <!-- Altere o link do CTA -->
+          <a href="#" class="btn-cta btn-cta-full" style="text-align:center;">Quero Minha Landing Page →</a>
+          <p class="cta-micro" style="text-align:center;">// pAgamento sEguro · rEceba eM 5 dIas</p>
+        </div>
+
+        <!-- Upsells -->
+        <div class="reveal reveal-delay-2">
+          <h3 style="font-size: var(--text-lg); margin-bottom: 1.5rem; color: var(--color-white);">Potencialize Sua Página</h3>
+
+          <!-- Altere os upsells -->
+          <div class="upsell-grid">
+            <div class="upsell-card">
+              <div class="upsell-info">
+                <h4>Integração WhatsApp + Formulário</h4>
+                <p>Botão direto para WhatsApp + formulário de captura de leads integrado</p>
+              </div>
+              <span class="upsell-price">+R$297</span>
+            </div>
+            <div class="upsell-card">
+              <div class="upsell-info">
+                <h4>Domínio + Configuração DNS</h4>
+                <p>Domínio personalizado registrado e configurado para sua página</p>
+              </div>
+              <span class="upsell-price">+R$197</span>
+            </div>
+            <div class="upsell-card">
+              <div class="upsell-info">
+                <h4>Plano De Manutenção Mensal</h4>
+                <p>Ajustes mensais + suporte prioritário + otimização contínua</p>
+              </div>
+              <span class="upsell-price">R$397/mês</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEÇÃO: FAQ
+       Altere perguntas e respostas
+       ============================================ -->
+  <section class="section section-alt" id="faq">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">// dÚvidas</span>
+        <h2 class="section-title">Perguntas Frequentes</h2>
+      </div>
+
+      <div class="faq-list">
+        <!-- Altere as perguntas e respostas -->
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            <span>"Achei caro, já vi landing page por menos."</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <p>Pelo que a maioria cobra, você recebe um site bonito. Pelo que a gente cobra, você recebe análise do concorrente + texto que vende + entrega em 5 dias. Seu concorrente fecha mais porque o site dele convence — o nosso foi feito pra isso.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question">
+            <span>"Preciso pensar mais um pouco."</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <p>Faz sentido. Mas cada semana sem uma landing page profissional é uma semana em que seu concorrente aparece onde você não está. Se tiver uma dúvida específica, me manda que respondo em minutos.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2">
+          <button class="faq-question">
+            <span>"Será que funciona pro meu tipo de serviço?"</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <p>Se você presta serviço e precisa de clientes, funciona. Já entregamos para nutricionistas, advogados, dentistas, personal trainers, consultores, fotógrafos, arquitetos e dezenas de outros profissionais. O método se adapta ao seu mercado.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3">
+          <button class="faq-question">
+            <span>"Não tenho tempo pra cuidar disso."</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <p>Exatamente por isso esse serviço existe. Você investe 10 minutos preenchendo um formulário. Nós fazemos todo o resto. Em 5 dias você tem a página no ar sem aparecer em nenhuma reunião.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-4">
+          <button class="faq-question">
+            <span>"Já tive site antes e não deu resultado."</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <p>A maioria dos sites não funciona porque foram feitos para ser bonitos, não para converter. Aqui cada seção tem um propósito estratégico: gerar autoridade, quebrar objeções e levar ao contato. É uma página de conversão, não um portfólio.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-5">
+          <button class="faq-question">
+            <span>"O que acontece se eu não gostar do resultado?"</span>
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <p>Você tem 1 rodada de ajustes incluída sem custo adicional. Além disso, como começamos com a análise do concorrente, você já sabe exatamente qual direção seguimos antes da página ficar pronta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       SEÇÃO: CTA FINAL
+       Altere headline final e CTA
+       ============================================ -->
+  <section class="section cta-final" id="cta-final">
+    <div class="cta-final-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label" style="justify-content: center;">// dEcisão</span>
+        <h2 style="margin-bottom: 1rem;">Seu Concorrente Já Tem Uma.<br>E Você?</h2>
+        <p class="cta-final-desc">
+          Cada dia sem uma landing page profissional é um dia que seus potenciais clientes estão fechando com outra pessoa.
+        </p>
+        <!-- Altere link e texto -->
+        <a href="#preco" class="btn-cta btn-cta-full" style="margin: 0 auto;">Quero Minha Landing Page →</a>
+        <p class="cta-micro" style="text-align:center;">// R$749 · eNtrega eM 5 dIas · sEm rEuniões</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       FOOTER
+       Altere informações legais e links
+       ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-copy">
+        <!-- Altere nome e ano -->
+        © 2025 PageLab. Todos os direitos reservados.
+      </div>
+      <div class="footer-links">
+        <!-- Altere links legais -->
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+        <a href="#">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================
+       JAVASCRIPT — Interações e Animações
+       ============================================ -->
+  <script>
+    /* === NAVBAR SCROLL === */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* === MOBILE MENU === */
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileClose = document.getElementById('mobileClose');
+
+    navToggle.addEventListener('click', () => mobileMenu.classList.add('open'));
+    mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    /* === SCROLL REVEAL (IntersectionObserver) === */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* === FAQ ACCORDION === */
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        // Fecha todos
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        // Abre o clicado se estava fechado
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    /* === SMOOTH SCROLL para links internos === */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* === TERMINAL TYPING EFFECT (sutil) === */
+    // Efeito opcional de digitação no terminal do hero
+    // Pode ser removido ou ajustado conforme necessidade
+    const terminalLines = document.querySelectorAll('.terminal-line');
+    terminalLines.forEach((line, i) => {
+      line.style.opacity = '0';
+      line.style.animation = `fadeUp 0.5s var(--ease-out-expo) ${0.8 + i * 0.2}s both`;
+    });
+  </script>
+
+</body>
+</html>
